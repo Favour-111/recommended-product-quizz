@@ -1,233 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Document</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playwrite+MX+Guides&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins"
-      rel="stylesheet"
-    />
+    <title>Questionnaire with Sessions</title>
     <style>
       body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
+        font-family: Arial, sans-serif;
+        max-width: 450px;
+        margin: 40px auto;
+        padding: 0 16px;
       }
-      .ans {
-        border: 1px solid gray;
-        padding: 30px;
-        margin-top: 30px;
-        width: 90%;
-        border-radius: 20px;
+      .progress-wrapper {
+        position: relative;
+        width: 100%;
+        height: 30px;
+        margin-bottom: 40px;
       }
-      .ans-head {
-        font-weight: bold;
-        margin-bottom: 10px;
-        font-size: 16px;
-        font-family: "Poppins";
+      .progress-line-bg,
+      .progress-line-fill {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 6px;
+        border-radius: 3px;
+        transform: translateY(-50%);
       }
-      .mg-cont {
+      .progress-line-bg {
+        background: #ccc;
+      }
+      .progress-line-fill {
+        background: #4caf50;
+        width: 0%;
+        transition: width 0.3s ease;
+        z-index: 1;
+      }
+      .dots {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        z-index: 2;
+      }
+      .dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #ccc;
+        border: 2px solid #ccc;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .dot.active {
+        background: #4caf50;
+        border-color: #4caf50;
+      }
+      .question {
+        display: none;
+        margin-bottom: 30px;
+      }
+      .question.active {
+        display: block;
+      }
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .option {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .option:hover,
+      .option.selected {
+        background: #e0f2e0;
+        border-color: #4caf50;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
         margin-top: 20px;
       }
-      .improves {
+      .button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 10px 18px;
+        font-size: 16px;
+        display: inline-block;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .button:disabled {
+        background-color: #9ccc9c;
+        cursor: not-allowed;
+      }
+      .removed {
+        display: none;
+      }
+      .step-counter {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: bold;
+      }
+      .message-screen {
         display: flex;
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-      .improve-cont {
-        padding: 7px 20px;
-        font-family: "Poppins";
-        background-color: rgb(237 237 237);
-        border-radius: 30px;
-        font-size: 12px;
-      }
-      .prod-cont {
-        display: flex;
-        gap: 40px;
-        margin-top: 30px;
-      }
-      .cont-1 {
-        width: 35%;
-        font-size: 18px;
-      }
-      .cont-2 {
-        display: flex;
-        gap: 10px;
-        img {
-          width: 170px;
-        }
-        .prod-name {
-          font-size: 17px;
-          font-family: "Poppins";
-        }
-        .prod-name2 {
-          font-size: 17px;
-          display: none;
-          font-family: "Poppins";
-        }
-        .line-under {
-          border: 1px solid #00000037;
-          margin: 10px 0;
-        }
-        .price {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          justify-content: center;
-          .old-price {
-            font-size: 16px;
-            text-decoration: line-through;
-            font-family: "Poppins";
-          }
-          .New-price {
-            font-family: "Poppins";
-            font-size: 16px;
-            font-weight: bold;
-          }
-          .Precent {
-            font-family: "Poppins";
-            color: #ad686f;
-            font-size: 16px;
-            font-weight: bold;
-          }
-        }
-        .done-btn {
-          margin-top: 15px;
-          padding: 7px 80px;
-          border-radius: 40px;
-          font-weight: bold;
-          font-size: 18px;
-          text-transform: uppercase;
-          background-color: #ad686f;
-          color: white;
-          border: none;
-          font-family: "Poppins";
-          span {
-            font-size: 12px;
-            font-family: "Poppins";
-            color: rgba(255, 255, 255, 0.564);
-            font-weight: normal;
-          }
-        }
-      }
-      .step-head {
-        width: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        text-align: center;
+        font-size: 1.2rem;
       }
-      .none-cont {
-        font-family: "Poppins";
-        font-size: 13px;
-      }
-
-      @media screen and (max-width: 980px) {
-        .ans {
-          width: 95%;
-        }
-        .done-btn {
-          font-size: 12px !important;
-          padding: 15px 40px !important;
-        }
-        span {
-          font-size: 10px;
-        }
-      }
-      @media screen and (max-width: 720px) {
-        .ans {
-          width: 85%;
-        }
-        .result-head {
-          font-size: 40px;
-        }
-        .prod-cont {
-          flex-direction: column-reverse;
-        }
-        .cont-1 {
-          width: 100%;
-        }
-        .cont-2 {
-          flex-direction: column;
-        }
-        .cont-img {
-          display: flex;
-          gap: 10px;
-        }
-        .prod-name {
-          display: none;
-        }
-        .prod-name2 {
-          font-size: 18px;
-          display: block !important;
-          margin-top: 10px;
-        }
-        .cont-img {
-          display: flex;
-        }
-        .done-btn {
-          width: 100%;
-        }
-        .recomend {
-          font-size: 20px;
-        }
+      .message-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
       }
     </style>
   </head>
   <body>
-    <div class="thank-you-message">
-      <div class="recomend">Recommendation #${index + 1}</div>
-      <div class="ans">
-        <div class="mg-cont">
-          <div class="prod-cont">
-            <div class="cont-1">
-              <div>
-                <div class="ans-head">Helps Improve:</div>
+    <div class="quiz-container">
+      <div class="step-counter" id="step-counter">Step 1/4</div>
 
-                <div class="improves">
-                  <div class="improve-cont">${concerns}</div>
-                </div>
-              </div>
-              <div class="none-cont">${note}</div>
+      <div class="progress-wrapper">
+        <div class="progress-line-bg"></div>
+        <div class="progress-line-fill" id="progress-line-fill"></div>
+        <div class="dots">
+          <div class="dot" id="dot-1"></div>
+          <div class="dot" id="dot-2"></div>
+          <div class="dot" id="dot-3"></div>
+          <div class="dot" id="dot-4"></div>
+        </div>
+      </div>
+
+      <div id="questions-wrapper">
+        <!-- Q1 -->
+        <div class="question active" data-index="1">
+          <p>1. What is your skin type?</p>
+          <div class="options">
+            <div class="option">Oily</div>
+            <div class="option">Dry</div>
+            <div class="option">Combination</div>
+            <div class="option">Normal</div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question" data-index="2">
+          <p>2. How often do you cleanse your face?</p>
+          <div class="options">
+            <div class="option">Once a day</div>
+            <div class="option">Twice a day</div>
+            <div class="option">Occasionally</div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question" data-index="3">
+          <label class="option">
+            <input type="radio" name="skinType" value="Oily" />
+            Oily
+          </label>
+          <label class="option">
+            <input type="radio" name="skinType" value="Dry" />
+            Dry
+          </label>
+        </div>
+
+        <!-- Q4: Message -->
+        <div class="question" data-index="4">
+          <div class="message-screen">
+            <div>✅ Session complete! Let's move on!</div>
+            <div class="message-buttons">
+              <button class="back">Back</button>
+              <button class="continue">Continue</button>
             </div>
-            <div class="cont-2">
-              <div class="cont-img">
-                <img src="${imageUrl}" alt="" />
-                <div>
-                  <div class="prod-name2">${productName}</div>
-                </div>
-              </div>
-              <div>
-                <div class="prod-name">${productName}</div>
-                <div class="line-under"></div>
-                <div class="price">
-                  <div class="old-price">$35.55</div>
-                  <div class="New-price">$35.55</div>
-                  <div class="Precent">Save 35%</div>
-                </div>
-                <button class="done-btn">
-                  ADD to cart<br />
-                  <span>60 days money back gurantee</span>
-                </button>
-              </div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question" data-index="5">
+          <p>5. Do you use sunscreen daily?</p>
+          <div class="options">
+            <div class="option">Yes</div>
+            <div class="option">No</div>
+            <div class="option">Sometimes</div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question" data-index="6">
+          <h3>Select up to 3 of your top skin concerns:</h3>
+          <div class="option">Dryness</div>
+          <div class="option">Sensitivity</div>
+          <div class="option">Redness</div>
+          <div class="option">Fine Lines</div>
+          <div class="option">Uneven Skin Tone</div>
+          <div class="option">Loss of Firmness</div>
+          <div class="option">Oily Skin</div>
+          <div class="option">Acne</div>
+          <div class="option">Clogged Pores</div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question" data-index="7">
+          <p>7. Do you have specific skin concerns?</p>
+          <div class="options">
+            <div class="option">Dark spots</div>
+            <div class="option">Wrinkles</div>
+            <div class="option">Redness</div>
+            <div class="option">None</div>
+          </div>
+        </div>
+
+        <!-- Q8: Message -->
+        <div class="question" data-index="8">
+          <div class="message-screen">
+            <div>✅ Session complete! Let's move on!</div>
+            <div class="message-buttons">
+              <button class="back">Back</button>
+              <button class="continue">Continue</button>
             </div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question" data-index="9">
+          <p>
+            9. What are your 3 biggest health or lifestyle habits that affect
+            your skin?
+          </p>
+          <div class="options">
+            <div class="option">Low Water Intake</div>
+            <div class="option">Lack of Sleep</div>
+            <div class="option">Poor Diet</div>
+            <div class="option">Stress</div>
+            <div class="option">Alcohol</div>
+            <div class="option">Smoking</div>
+            <div class="option">Exercise</div>
+            <div class="option">Pollution</div>
+            <div class="option">Sun Exposure</div>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question" data-index="10">
+          <p>10. How much sleep do you get per night?</p>
+          <div class="options">
+            <div class="option">Less than 5 hours</div>
+            <div class="option">5-7 hours</div>
+            <div class="option">7-9 hours</div>
+            <div class="option">9+ hours</div>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question" data-index="11">
+          <h2>Tell us anything else you'd like to share (optional):</h2>
+          <textarea
+            placeholder="Your message here..."
+            rows="4"
+            cols="50"
+          ></textarea>
+
+          <div class="button-group">
+            <button class="back">Back</button>
+            <button class="continue">Continue</button>
+          </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question" data-index="12">
+          <h2>Enter your contact details:</h2>
+
+          <input type="text" id="name" placeholder="Name" required /><br />
+          <input type="email" id="email" placeholder="Email" required /><br />
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Phone Number"
+            required
+          /><br />
+
+          <div class="button-group">
+            <button class="back">Back</button>
+            <button class="continue">Submit</button>
           </div>
         </div>
       </div>
     </div>
+    <div class="thank-you-message" style="display: none">
+      <h2>Thank you for completing the quiz!</h2>
+      <p>We'll use your answers to recommend the perfect skincare for you.</p>
+    </div>
+
+    <div class="buttons">
+      <button class="button" id="prev-btn" disabled>Previous</button>
+      <button class="button" id="next-btn" disabled>Next</button>
+    </div>
+    <script>
+      // JavaScript for Skincare Quiz
+      const totalQuestions = 12;
+      const questionsPerStep = 4;
+      let currentQuestion = 1;
+      const multiSelectQuestions = [6, 9];
+
+      const progressLineFill = document.getElementById("progress-line-fill");
+      const nextBtn = document.getElementById("next-btn");
+      const prevBtn = document.getElementById("prev-btn");
+      const stepCounter = document.getElementById("step-counter");
+      const dots = [...document.querySelectorAll(".dot")];
+      const questions = [...document.querySelectorAll(".question")];
+
+      function showQuestion(num) {
+        questions.forEach((q, idx) => {
+          q.classList.toggle("active", idx === num - 1);
+        });
+
+        const q = questions[num - 1];
+        const continueBtn = q.querySelector(".continue");
+        const backBtn = q.querySelector(".back");
+
+        if (continueBtn && backBtn) {
+          continueBtn.onclick = () => {
+            if (currentQuestion === 12) {
+              const name = document.querySelector("#name")?.value?.trim();
+              const email = document.querySelector("#email")?.value?.trim();
+              const phone = document.querySelector("#phone")?.value?.trim();
+
+              if (!name || !email || !phone) {
+                alert("Please fill in all required fields.");
+                return;
+              }
+
+              logAnswers();
+
+              const optionalMessage = document
+                .querySelector('[data-index="11"] textarea')
+                ?.value?.trim();
+              if (optionalMessage) {
+                console.log("User Message:", optionalMessage);
+              }
+
+              document.querySelector(".quiz-container").style.display = "none";
+              document.querySelector(".thank-you-message").style.display =
+                "block";
+              return;
+            }
+
+            currentQuestion++;
+            showQuestion(currentQuestion);
+            updateProgress();
+          };
+
+          backBtn.onclick = () => {
+            currentQuestion--;
+            showQuestion(currentQuestion);
+            updateProgress();
+          };
+        }
+
+        updateButtons();
+      }
+
+      function updateButtons() {
+        const current = questions[currentQuestion - 1];
+        const selected = current.querySelectorAll(".option.selected");
+        const isMulti = multiSelectQuestions.includes(currentQuestion);
+
+        prevBtn.disabled = currentQuestion === 1;
+        nextBtn.disabled = isMulti
+          ? selected.length === 0
+          : selected.length === 0;
+
+        if ([4, 8, 11, 12].includes(currentQuestion)) {
+          nextBtn.style.display = "none";
+          prevBtn.style.display = "none";
+        } else {
+          nextBtn.style.display = "inline-block";
+          prevBtn.style.display = "inline-block";
+        }
+      }
+
+      function updateProgress() {
+        const totalSegments = 3;
+        const segmentPercent = 100 / totalSegments;
+        const segmentIndex = Math.floor(
+          (currentQuestion - 1) / questionsPerStep
+        );
+        const questionInSegment =
+          ((currentQuestion - 1) % questionsPerStep) + 1;
+
+        let progressPercent;
+        if (
+          questionInSegment === questionsPerStep ||
+          currentQuestion === totalQuestions
+        ) {
+          progressPercent = (segmentIndex + 1) * segmentPercent;
+        } else {
+          const segmentProgress =
+            (questionInSegment - 1) / (questionsPerStep - 1);
+          progressPercent =
+            segmentIndex * segmentPercent + segmentProgress * segmentPercent;
+        }
+
+        progressPercent = Math.min(progressPercent, 100);
+        progressLineFill.style.width = progressPercent + "%";
+        stepCounter.textContent = `Step ${segmentIndex + 1}/${dots.length}`;
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i <= segmentIndex);
+        });
+      }
+
+      document.querySelectorAll(".option").forEach((option) => {
+        option.addEventListener("click", () => {
+          const question = option.closest(".question");
+          const index = parseInt(question.dataset.index);
+          const options = question.querySelectorAll(".option");
+          const isMulti = multiSelectQuestions.includes(index);
+
+          if (isMulti) {
+            option.classList.toggle("selected");
+            const selected = question.querySelectorAll(".option.selected");
+            if (selected.length > 3) {
+              option.classList.remove("selected");
+            }
+
+            const updatedSelected =
+              question.querySelectorAll(".option.selected");
+            question.querySelectorAll(".option").forEach((opt) => {
+              opt.classList.toggle(
+                "disabled",
+                updatedSelected.length >= 3 &&
+                  !opt.classList.contains("selected")
+              );
+            });
+
+            updateButtons();
+            return;
+          }
+
+          options.forEach((el) => el.classList.remove("selected"));
+          option.classList.add("selected");
+          updateButtons();
+
+          if ([4, 8].includes(currentQuestion + 1)) return;
+
+          setTimeout(() => {
+            if (currentQuestion < totalQuestions) {
+              currentQuestion++;
+              showQuestion(currentQuestion);
+              updateProgress();
+              updateButtons();
+            } else {
+              logAnswers();
+            }
+          }, 250);
+        });
+      });
+
+      nextBtn.addEventListener("click", () => {
+        if (currentQuestion < totalQuestions) {
+          currentQuestion++;
+          showQuestion(currentQuestion);
+          updateProgress();
+          updateButtons();
+        } else {
+          logAnswers();
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        if (currentQuestion > 1) {
+          currentQuestion--;
+          showQuestion(currentQuestion);
+          updateProgress();
+          updateButtons();
+        }
+      });
+
+      function logAnswers() {
+        const concernMap = {
+          Dryness: "A",
+          Irritation: "A",
+          Redness: "A",
+          Wrinkles: "B",
+          "Fine Lines": "B",
+          "Skin Firmness": "B",
+          "Skin Texture": "C",
+          Puffiness: "C",
+          "Clogged Pores": "C",
+          "Oily Skin": "C",
+        };
+
+        const concernSelections = {};
+        const selectedOptions = document.querySelectorAll(".option.selected");
+
+        selectedOptions.forEach((opt) => {
+          const text = opt.textContent.trim();
+          for (const keyword in concernMap) {
+            if (text.toLowerCase().includes(keyword.toLowerCase())) {
+              const cat = concernMap[keyword];
+              concernSelections[cat] = (concernSelections[cat] || 0) + 1;
+            }
+          }
+        });
+
+        const sorted = Object.entries(concernSelections).sort(
+          (a, b) => b[1] - a[1]
+        );
+        const top = sorted.slice(0, 2);
+
+        if (sorted.length === 1) {
+          console.log(
+            "Category:",
+            sorted[0][0],
+            getCategoryProduct(sorted[0][0])
+          );
+        } else if (sorted.length === 2) {
+          console.log("Top Categories:");
+          top.forEach(([cat]) => {
+            console.log(
+              `- ${getCategoryName(cat)}: ${getCategoryProduct(cat)}`
+            );
+          });
+        } else if (sorted.length >= 3) {
+          console.log("Top 3 Balanced Categories:");
+          sorted.forEach(([cat]) => {
+            console.log(
+              `- ${getCategoryName(cat)}: ${getCategoryProduct(cat)}`
+            );
+          });
+        } else {
+          console.log("Done.");
+        }
+      }
+
+      function getCategoryName(code) {
+        return {
+          A: "Dry & Sensitive Skin",
+          B: "Skin Rejuvenation & Anti-Aging",
+          C: "Deep Cleansing & Detox",
+        }[code];
+      }
+
+      function getCategoryProduct(code) {
+        return {
+          A: "Beef Tallow Moisturizer",
+          B: "Skincare Wand & Serum",
+          C: "Magic Mask",
+        }[code];
+      }
+
+      // Initial load
+      showQuestion(currentQuestion);
+      updateProgress();
+      updateButtons();
+    </script>
   </body>
 </html>

@@ -333,7 +333,9 @@
         .abtText {
           font-weight: normal;
           color: white;
+          font-size: 14px;
           span {
+            font-size: 14px;
             font-weight: 900;
           }
         }
@@ -405,7 +407,7 @@
       }
       textarea {
         width: 400px;
-        height: 200px;
+        height: 80px;
         padding: 10px;
         resize: none !important;
         border: 1px solid black;
@@ -566,6 +568,131 @@
       #recommendation-output {
         width: 100%;
       }
+      .load-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .loading-head {
+        margin-top: 20px;
+        font-weight: bold;
+        width: 100%;
+        font-family: "Poppins";
+        font-size: 18px;
+      }
+      .loader1 {
+        width: 58px;
+        height: 58px;
+        display: block;
+        margin: 15px auto;
+        position: relative;
+        color: #ffe6e5;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+      .loader1::after,
+      .loader1::before {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        width: 34px;
+        height: 34px;
+        top: 50%;
+        left: 50%;
+        transform: scale(0.5) translate(0, 0);
+        background-color: #ffe6e5;
+        border-radius: 50%;
+        animation: animloader 1s infinite ease-in-out;
+      }
+      .loader1::before {
+        background-color: #ad686f;
+        transform: scale(0.5) translate(-48px, -48px);
+      }
+      .load-cont {
+        width: 500px;
+        text-align: center;
+        font-family: "Poppins";
+        span {
+          font-weight: bold;
+        }
+      }
+      .card2 {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+      }
+      .carousel-item2 {
+        background-color: #fdcecd24;
+        padding: 15px;
+        width: 300px;
+        border-radius: 20px;
+      }
+      .carousel-images2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .carousel-image-item2 {
+          flex: 1;
+          img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 20px;
+          }
+        }
+      }
+      .visible {
+        font-family: "Poppins";
+        text-transform: uppercase;
+        font-weight: light;
+        font-size: 13px;
+        margin-top: 15px;
+        letter-spacing: 1px;
+      }
+      .days2 {
+        font-family: "Poppins";
+        font-weight: light;
+        font-size: 13px;
+        margin-top: 5px;
+      }
+      .carousel-head {
+        font-family: "TWKLausanne", sans-serif !important;
+        font-size: 17px;
+        margin: 10px 0 15px 0;
+      }
+      .carousel-contents {
+        font-family: "TWKLausanne", sans-serif !important;
+        font-size: 14px;
+        margin: 15px 0;
+      }
+      .carousel-name {
+        font-family: "TWKLausanne", sans-serif !important;
+        font-size: 13px;
+      }
+      .co-head {
+        font-size: 20px;
+        font-family: "Poppins";
+        margin-bottom: 10px;
+        span {
+          font-weight: bold;
+        }
+      }
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes animloader {
+        50% {
+          transform: scale(1) translate(-50%, -50%);
+        }
+      }
+
       @media screen and (max-width: 980px) {
         .done-btn {
           font-size: 12px !important;
@@ -614,13 +741,17 @@
         }
       }
       @media screen and (max-width: 900px) {
-        body {
-          width: 95% !important;
-        }
         .progress-wrapper {
           width: 100%;
         }
         @media (max-width: 600px) {
+          .loading-head {
+            width: 100% !important;
+            text-align: center;
+          }
+          .load-cont {
+            width: 100%;
+          }
           .question-head {
             font-size: 20px;
             width: 90%;
@@ -645,7 +776,7 @@
             width: 90%;
           }
           .options3 {
-            width: 90% !important;
+            width: 100% !important;
           }
         }
 
@@ -657,6 +788,15 @@
         textarea {
           width: 90%;
         }
+        .abtText {
+          font-weight: normal;
+          color: white;
+          font-size: 12px;
+          span {
+            font-size: 12px;
+            font-weight: 900;
+          }
+        }
       }
       @media screen and (max-width: 500px) {
         .options {
@@ -664,6 +804,12 @@
         }
         input {
           width: 90%;
+        }
+        .button {
+          font-size: 11px;
+        }
+        .back {
+          font-size: 11px;
         }
       }
     </style>
@@ -1208,19 +1354,53 @@
       class="loader"
       style="display: none; text-align: center; padding: 40px"
     >
-      <div
-        class="spinner"
-        style="
-          width: 40px;
-          height: 40px;
-          border: 4px solid #ccc;
-          border-top: 4px solid #333;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-          margin: 0 auto;
-        "
-      ></div>
-      <p>Generating your results...</p>
+      <div class="load-body">
+        <div>
+          <div class="loading-head">
+            Our experts are preparing your personalized routine
+          </div>
+          <span class="loader1"></span>
+          <div class="load-cont">
+            Did you know? <span>96%</span> of study participants said thier skin
+            looked and felt <span>radiant, rejuvenated</span> and
+            <span>refreshed</span> after using luminence 30days
+          </div>
+
+          <div class="card2">
+            <div class="card-itm">
+              <div class="carousel-item2">
+                <div class="co-head"><span>Result</span> you can see</div>
+                <div class="carousel-images2">
+                  <div class="carousel-image-item2">
+                    <div>
+                      <img
+                        src="https://res.cloudinary.com/drn3lmktm/image/upload/v1746195280/before_onkczn.png"
+                      />
+                    </div>
+                    <div class="days2">Day 1</div>
+                  </div>
+                  <div class="carousel-image-item2">
+                    <div>
+                      <img
+                        src="https://res.cloudinary.com/drn3lmktm/image/upload/v1746196239/after_rinrmu.png"
+                      />
+                    </div>
+                    <div class="days2">Day 21</div>
+                  </div>
+                </div>
+                <div class="visible">Visible improvement</div>
+                <div class="carousel-head">Clear & Confident</div>
+                <div class="carousel-contents">
+                  "Thanks to luminence's beef tallow, my skin has never been
+                  clearer. No more breakouts or uneven patches, just smooth
+                  skin."
+                </div>
+                <div class="carousel-name">Jasmine,32</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="thank-you-message" style="display: none; padding: 20px">
       <div class="result-head">Your <i>results</i> are in!</div>
