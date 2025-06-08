@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playwrite+MX+Guides&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .ans {
+        border: 1px solid gray;
+        padding: 30px;
+        margin-top: 30px;
+        width: 90%;
+        border-radius: 20px;
+      }
+      .ans-head {
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-family: "Poppins";
+      }
+      .mg-cont {
+        margin-top: 20px;
+      }
+      .improves {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .improve-cont {
+        padding: 7px 20px;
+        font-family: "Poppins";
+        background-color: rgb(237 237 237);
+        border-radius: 30px;
+        font-size: 12px;
+      }
+      .prod-cont {
+        display: flex;
+        gap: 40px;
+        margin-top: 30px;
+      }
+      .cont-1 {
+        width: 35%;
+        font-size: 18px;
+      }
+      .cont-2 {
+        display: flex;
+        gap: 10px;
+        img {
+          width: 170px;
+        }
+        .prod-name {
+          font-size: 17px;
+          font-family: "Poppins";
+        }
+        .prod-name2 {
+          font-size: 17px;
+          display: none;
+          font-family: "Poppins";
+        }
+        .line-under {
+          border: 1px solid #00000037;
+          margin: 10px 0;
+        }
+        .price {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          justify-content: center;
+          .old-price {
+            font-size: 16px;
+            text-decoration: line-through;
+            font-family: "Poppins";
+          }
+          .New-price {
+            font-family: "Poppins";
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .Precent {
+            font-family: "Poppins";
+            color: #ad686f;
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+        .done-btn {
+          margin-top: 15px;
+          padding: 7px 80px;
+          border-radius: 40px;
+          font-weight: bold;
+          font-size: 18px;
+          text-transform: uppercase;
+          background-color: #ad686f;
+          color: white;
+          border: none;
+          font-family: "Poppins";
+          span {
+            font-size: 12px;
+            font-family: "Poppins";
+            color: rgba(255, 255, 255, 0.564);
+            font-weight: normal;
+          }
+        }
+      }
+      .step-head {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .none-cont {
+        font-family: "Poppins";
+        font-size: 13px;
+      }
+
+      @media screen and (max-width: 980px) {
+        .ans {
+          width: 95%;
+        }
+        .done-btn {
+          font-size: 12px !important;
+          padding: 15px 40px !important;
+        }
+        span {
+          font-size: 10px;
+        }
+      }
+      @media screen and (max-width: 720px) {
+        .ans {
+          width: 85%;
+        }
+        .result-head {
+          font-size: 40px;
+        }
+        .prod-cont {
+          flex-direction: column-reverse;
+        }
+        .cont-1 {
+          width: 100%;
+        }
+        .cont-2 {
+          flex-direction: column;
+        }
+        .cont-img {
+          display: flex;
+          gap: 10px;
+        }
+        .prod-name {
+          display: none;
+        }
+        .prod-name2 {
+          font-size: 18px;
+          display: block !important;
+          margin-top: 10px;
+        }
+        .cont-img {
+          display: flex;
+        }
+        .done-btn {
+          width: 100%;
+        }
+        .recomend {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="thank-you-message">
+      <div class="recomend">Recommendation #${index + 1}</div>
+      <div class="ans">
+        <div class="mg-cont">
+          <div class="prod-cont">
+            <div class="cont-1">
+              <div>
+                <div class="ans-head">Helps Improve:</div>
+
+                <div class="improves">
+                  <div class="improve-cont">${concerns}</div>
+                </div>
+              </div>
+              <div class="none-cont">${note}</div>
+            </div>
+            <div class="cont-2">
+              <div class="cont-img">
+                <img src="${imageUrl}" alt="" />
+                <div>
+                  <div class="prod-name2">${productName}</div>
+                </div>
+              </div>
+              <div>
+                <div class="prod-name">${productName}</div>
+                <div class="line-under"></div>
+                <div class="price">
+                  <div class="old-price">$35.55</div>
+                  <div class="New-price">$35.55</div>
+                  <div class="Precent">Save 35%</div>
+                </div>
+                <button class="done-btn">
+                  ADD to cart<br />
+                  <span>60 days money back gurantee</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
