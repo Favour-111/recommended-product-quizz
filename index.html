@@ -27,6 +27,9 @@
         padding: 0 16px;
         font-family: "TWKLausanne", sans-serif !important;
       }
+      .q-bdy {
+        position: relative;
+      }
       .question-head {
         font-size: 22px;
         font-weight: bold;
@@ -89,7 +92,7 @@
         background: #ccc;
       }
       .progress-line-fill {
-        background: #ad686f;
+        background: #fdcecd;
         width: 0%;
         transition: width 0.3s ease;
         z-index: 1;
@@ -109,8 +112,8 @@
         transition: background-color 0.3s, border-color 0.3s;
       }
       .dot.active {
-        background: #ad686f;
-        border-color: #ad686f;
+        background: #fdcecd;
+        border-color: #fdcecd;
       }
       .question {
         display: none;
@@ -139,7 +142,7 @@
       .options2 {
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
         flex-wrap: wrap;
         margin-top: 20px;
       }
@@ -163,16 +166,18 @@
         cursor: pointer;
         transition: background 0.2s;
       }
-      .option:hover,
-      .option.selected {
-        border-color: #ad686f;
-        box-shadow: 0px 2px 17px -2px rgba(0, 0, 0, 0.21);
-      }
+
       .option:hover .radio {
         border: 4px solid #000;
         height: 8px;
         width: 7px;
       }
+      .option:hover,
+      .option.selected {
+        border-color: #fdcecd;
+        box-shadow: 0px 2px 17px -2px rgba(0, 0, 0, 0.21);
+      }
+
       .option.selected .radio {
         border: 4px solid #000;
         height: 8px;
@@ -185,13 +190,30 @@
         margin-top: 20px;
         width: 60%;
       }
+      .opt {
+        transition: 250ms;
+        padding: 0 !important;
+      }
+      .opt:hover {
+        transform: translateY(-7px) !important;
+        box-shadow: none !important;
+        background-color: transparent;
+      }
+      .opt:hover img {
+        border-radius: 10px;
+        box-shadow: 0px 2px 17px -2px rgba(0, 0, 0, 0.21);
+      }
+
       .secondOption {
+        border: none !important;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         border: none;
-        border-radius: 5px;
-        padding: 16px;
+        border-radius: 10px;
+        padding: 0;
+        background-color: transparent !important;
         position: relative;
         transition: transform 0.3s ease;
       }
@@ -202,9 +224,6 @@
         border-radius: 10px;
       }
 
-      .secondOption:hover {
-        transform: translateY(-10px); /* Looks like margin-top increased */
-      }
       .secondOption2 {
         display: flex;
         align-items: center;
@@ -215,29 +234,20 @@
         position: relative;
         transition: transform 0.3s ease;
       }
-      .secondOption2:hover .option-text {
-        border-radius: 2px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      .option.secondOption:hover {
+        box-shadow: 0px 2px 17px -2px rgba(0, 0, 0, 0) !important;
+      }
+      .option.secondOption.selected {
+        box-shadow: 0px 2px 17px -2px rgba(0, 0, 0, 0) !important;
+        transform: translateY(-7px);
+      }
+      .option.secondOption.selected img {
+        box-shadow: 0px 2px 17px -2px rgba(0, 0, 0, 0.21);
+        transform: translateY(-2px);
       }
 
       .secondOption2:hover {
         transform: translateY(-10px); /* Looks like margin-top increased */
-      }
-      .secondOption {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        border-radius: 5px;
-        padding: 12px;
-        position: relative;
-        transition: transform 0.3s ease;
-      }
-
-      .secondOption img {
-        width: 80px;
-        height: 75px;
-        border-radius: 10px;
       }
 
       .option-text {
@@ -245,19 +255,7 @@
         font-size: 13px;
         font-weight: normal;
       }
-      .opt {
-        transition: 250ms;
-      }
-      .opt:hover {
-        transform: translateY(-5px) !important;
-      }
-      .option-text {
-        margin-top: 5px;
-      }
-      .secondOption:hover .option-text {
-        border-radius: 2px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      }
+
       .button {
         background-color: white !important;
         border: none;
@@ -292,8 +290,8 @@
         font-weight: bold;
       }
       .continue {
-        background-color: #ad686f;
-        color: #fff;
+        background-color: #fdcecd;
+        color: #000000;
         cursor: pointer;
         padding: 15px 30px;
         font-size: 15px;
@@ -304,8 +302,8 @@
       }
       .continue:hover {
         background-color: transparent;
-        border: 1px solid #ad686f;
-        color: #ad686f;
+        border: 1px solid #fdcecd;
+        color: #fdcecd;
       }
       .back {
         background-color: white !important;
@@ -338,15 +336,16 @@
         font-size: 1.2rem;
         width: 350px;
         position: relative;
-        background: url("https://res.cloudinary.com/dxt708wtx/image/upload/v1749556060/DIGITAL_ASSETS_BLACK_LUMINENCE_te4unr.webp");
         background-position: center;
         background-size: cover;
         height: 350px;
         border-radius: 10px;
+
         img {
           width: 100%;
           height: 370px;
         }
+
         .concern-icon {
           width: 40px !important;
           height: 40px !important;
@@ -371,6 +370,13 @@
           background-color: #00000048;
           border-radius: 10px;
         }
+      }
+      .message-screen.screen1 {
+        background-image: url("https://res.cloudinary.com/dxt708wtx/image/upload/v1749556060/DIGITAL_ASSETS_BLACK_LUMINENCE_te4unr.webp");
+      }
+
+      .message-screen.screen2 {
+        background-image: url("https://raw.githubusercontent.com/Favour-111/my-asset/refs/heads/main/DIGITAL_ASSETS_WHITE_LUMINENCE.webp");
       }
       .option-cont {
         display: flex;
@@ -457,7 +463,7 @@
       }
       .result-head {
         font-size: 45px;
-        color: #ad686f;
+        color: #fdcecd;
         font-weight: bold;
         i {
           font-weight: normal;
@@ -465,7 +471,7 @@
       }
       .result-head {
         font-size: 55px;
-        color: #ad686f;
+        color: #fdcecd;
         font-weight: bold;
         i {
           font-weight: normal;
@@ -551,7 +557,7 @@
           }
           .Precent {
             font-family: "Poppins";
-            color: #ad686f;
+            color: #fdcecd;
             font-size: 16px;
             font-weight: bold;
           }
@@ -564,7 +570,7 @@
           font-weight: bold;
           font-size: 18px;
           text-transform: uppercase;
-          background-color: #ad686f;
+          background-color: #fdcecd;
           color: white;
           border: none !important;
           font-family: "Poppins";
@@ -631,7 +637,7 @@
         animation: animloader 1s infinite ease-in-out;
       }
       .loader1::before {
-        background-color: #ad686f;
+        background-color: #fdcecd;
         transform: scale(0.5) translate(-48px, -48px);
       }
       .load-cont {
@@ -826,6 +832,9 @@
             font-weight: 900;
           }
         }
+        .button-group {
+          width: auto !important;
+        }
       }
       @media screen and (max-width: 500px) {
         .options {
@@ -844,620 +853,622 @@
     </style>
   </head>
   <body>
-    <div class="quiz-container">
-      <div class="step-head">
-        <div class="wrap-cont">
-          <div class="step-counter" id="step-counter">1/4</div>
-          <div class="progress-wrapper">
-            <div class="progress-line-bg"></div>
-            <div class="progress-line-fill" id="progress-line-fill"></div>
-            <div class="dots">
-              <div class="dot" id="dot-1"></div>
-              <div class="dot" id="dot-2"></div>
-              <div class="dot" id="dot-3"></div>
-              <div class="dot" id="dot-4"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="questions-wrapper">
-        <!-- Q1 -->
-        <div class="question active" data-index="1">
-          <p class="question-head">What is your age?</p>
-          <p class="question-content">
-            This helps us better personalize your routine. We'll keep this
-            information private.
-          </p>
-          <div class="options">
-            <div class="option">
-              <div class="radio"></div>
-              <div>18-24</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>25-34</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>35-44</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>45-54</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>55-64</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>65-74</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>75-84</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>85+</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="question" data-index="2">
-          <p class="question-head">Is your skin sensitive??</p>
-          <p class="question-content">
-            Not sure? Sensitive skin is a common condition which means your skin
-            is more prone to reactions such as redness and itching.
-          </p>
-          <div class="options">
-            <div class="option">
-              <div class="radio"></div>
-              <div>Yes</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>No</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Q3 -->
-        <div class="question" data-index="3">
-          <p class="question-head">Which best describes your skin?</p>
-          <p class="question-content">
-            Normal skin is not dry, oily, or a combination.
-          </p>
-          <div class="options2">
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556090/Screenshot_2025-06-06_213142_rapqy4.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Oily</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556087/Screenshot_2025-06-06_220301_zzwdeb.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Dry</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556086/Screenshot_2025-06-06_220637_txpgpc.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Combination</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556086/Screenshot_2025-06-06_220745_doo7vf.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Normal</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Q4: Message -->
-        <div class="question" data-index="4">
-          <div class="message-screen">
-            <div class="msg">
-              <div class="abt">About Luminence</div>
-              <div class="abtText">
-                Luminence has helped over <span>300,000</span> people transform
-                their skin
-              </div>
-            </div>
-          </div>
-          <div class="message-buttons">
-            <button class="continue">Continue</button>
-            <button class="back">
-              <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-          </div>
-        </div>
-
-        <!-- Q5 -->
-        <div class="question" data-index="5">
-          <p class="question-head">Which best describes your skin?</p>
-          <p class="question-content">
-            Normal skin is not dry, oily, or a combination.
-          </p>
-          <div class="option-cont">
-            <div class="options2">
-              <div class="opt">
-                <div class="option secondOption2">
-                  <div class="skin-color1">.</div>
-                </div>
-                <div class="option-text">Type I</div>
-              </div>
-            </div>
-            <div class="options2">
-              <div class="opt">
-                <div class="option secondOption2">
-                  <div class="skin-color2">.</div>
-                </div>
-                <div class="option-text">Type II</div>
-              </div>
-            </div>
-            <div class="options2">
-              <div class="opt">
-                <div class="option secondOption2">
-                  <div class="skin-color3">.</div>
-                </div>
-                <div class="option-text">Type III</div>
-              </div>
-            </div>
-            <div class="options2">
-              <div class="opt">
-                <div class="option secondOption2">
-                  <div class="skin-color4">.</div>
-                </div>
-                <div class="option-text">Type IV</div>
-              </div>
-            </div>
-            <div class="options2">
-              <div class="opt">
-                <div class="option secondOption2">
-                  <div class="skin-color5">.</div>
-                </div>
-                <div class="option-text">Type V</div>
-              </div>
-            </div>
-            <div class="options2">
-              <div class="opt">
-                <div class="option secondOption2">
-                  <div class="skin-color6">.</div>
-                </div>
-                <div class="option-text">Type VI</div>
+    <div class="q-bdy">
+      <div class="quiz-container">
+        <div class="step-head">
+          <div class="wrap-cont">
+            <div class="step-counter" id="step-counter">1/4</div>
+            <div class="progress-wrapper">
+              <div class="progress-line-bg"></div>
+              <div class="progress-line-fill" id="progress-line-fill"></div>
+              <div class="dots">
+                <div class="dot" id="dot-1"></div>
+                <div class="dot" id="dot-2"></div>
+                <div class="dot" id="dot-3"></div>
+                <div class="dot" id="dot-4"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Q6 -->
-        <div class="question" data-index="6">
-          <p class="question-head2">
-            What are your top 3<br />
-            skin concerns?
-          </p>
-          <p class="question-content">Please select up to 3 skin concerns.</p>
-          <div class="options3">
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556087/Screenshot_2025-06-06_220301_zzwdeb.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Dryness</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://i.postimg.cc/q7YZF0qf/Screenshot-2025-06-07-104912.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Redness</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556075/Screenshot_2025-06-07_104912_obgry5.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Sensitivity</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556074/Screenshot_2025-06-07_105330_trrsss.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Fine Lines</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556070/Screenshot_2025-06-07_105809_x4e0pj.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Acne</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556085/Screenshot_2025-06-07_104111_z7v4nj.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Clogged Pores</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556090/Screenshot_2025-06-06_213142_rapqy4.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Oily Skin</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556070/Screenshot_2025-06-07_105809_x4e0pj.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Loss of Firmness</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556070/Screenshot_2025-06-07_110330_xrwq70.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Uneven Skin Tone</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Q7 -->
-        <div class="question" data-index="7">
-          <p class="question-head2">Do you ever get breakouts?</p>
-          <p class="question-content">
-            If you experience acne please select full face breakouts.
-          </p>
-          <div class="options2">
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556066/Screenshot_2025-06-07_111245_jtr3xr.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">No</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556066/Screenshot_2025-06-07_111359_efsz2a.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">
-                Occasional<br />
-                Pimples
-              </div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556059/Screenshot_2025-06-07_111449_ymfie9.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">
-                Full Face <br />
-                Breakouts
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Q8: Message -->
-        <div class="question" data-index="8">
-          <div class="message-screen">
-            <div class="msg">
-              <div class="abt">About Luminence</div>
-              <div class="abtText">
-                <span>Tre it Risk-Free</span><br />
-                <span>60 Days</span> Money Back Guarantee<br />
-                & Free Return
-              </div>
-            </div>
-          </div>
-          <div class="message-buttons">
-            <button class="continue">Continue</button>
-            <button class="back">
-              <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-          </div>
-        </div>
-
-        <!-- Q9 -->
-        <div class="question" data-index="9">
-          <p class="question-head2">
-            What part are you most interested in improving
-          </p>
-          <p class="question-content">Please select up to 3 areas.</p>
-
-          <div class="options3">
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556059/Screenshot_2025-06-07_175429_hyqzav.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Face</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556058/neck_rowbz9.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Neck and chest</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556058/hand_r1omhz.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Hand</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556057/body_jfjo3i.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Body</div>
-            </div>
-            <div class="opt">
-              <div class="option secondOption">
-                <div>
-                  <img
-                    src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556056/eye_vrikpw.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="option-text">Under Eyes</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Q10 -->
-        <div class="question" data-index="10">
-          <p class="question-head">
-            How would you describe your daily skincare routine?
-          </p>
-          <p class="question-content">
-            Select the option that best describes how you care for your skin.
-          </p>
-          <div class="options">
-            <div class="option">
-              <div class="radio"></div>
-              <div>I like to keep it sweet and simple</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>I use a couple of essential product everyday</div>
-            </div>
-            <div class="option">
-              <div class="radio"></div>
-              <div>I enjoy a thorough routine with several steps</div>
-            </div>
-          </div>
-        </div>
-        <form id="myForm">
-          <!-- Q11 -->
-          <div class="question" data-index="11">
-            <p class="question-head">
-              What product would you love to see us create next
-            </p>
+        <div id="questions-wrapper">
+          <!-- Q1 -->
+          <div class="question active" data-index="1">
+            <p class="question-head">What is your age?</p>
             <p class="question-content">
-              We're always innovating tell us what your dream skincare product
-              looks like!
+              This helps us better personalize your routine. We'll keep this
+              information private.
             </p>
-            <textarea
-              placeholder="Input here(optional)...."
-              rows="4"
-              cols="50"
-              id="message"
-              name="suggested-product"
-            ></textarea>
-            <div class="button-group">
-              <button class="back">
-                <i class="fa-solid fa-arrow-left"></i> Back
-              </button>
+            <div class="options">
+              <div class="option">
+                <div class="radio"></div>
+                <div>18-24</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>25-34</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>35-44</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>45-54</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>55-64</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>65-74</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>75-84</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>85+</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="question" data-index="2">
+            <p class="question-head">Is your skin sensitive??</p>
+            <p class="question-content">
+              Not sure? Sensitive skin is a common condition which means your
+              skin is more prone to reactions such as redness and itching.
+            </p>
+            <div class="options">
+              <div class="option">
+                <div class="radio"></div>
+                <div>Yes</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>No</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="question" data-index="3">
+            <p class="question-head">Which best describes your skin?</p>
+            <p class="question-content">
+              Normal skin is not dry, oily, or a combination.
+            </p>
+            <div class="options2">
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556090/Screenshot_2025-06-06_213142_rapqy4.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Oily</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556087/Screenshot_2025-06-06_220301_zzwdeb.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Dry</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556086/Screenshot_2025-06-06_220637_txpgpc.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Combination</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556086/Screenshot_2025-06-06_220745_doo7vf.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Normal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4: Message -->
+          <div class="question" data-index="4">
+            <div class="message-screen screen1">
+              <div class="msg">
+                <div class="abt">About Luminence</div>
+                <div class="abtText">
+                  Luminence has helped over <span>1,000,000</span> people
+                  transform their skin
+                </div>
+              </div>
+            </div>
+            <div class="message-buttons">
               <button class="continue">Continue</button>
-            </div>
-          </div>
-
-          <!-- Q12 -->
-          <div class="question" data-index="12">
-            <p class="question-head">Where can we send your results?</p>
-            <p class="question-content">
-              Enter your name and email to receive your personalized routine.
-            </p>
-
-            <input
-              type="text"
-              id="name"
-              style="margin-top: 20px"
-              placeholder="First Name"
-              name="your-name"
-              required
-            /><br />
-            <input
-              type="email"
-              id="email"
-              placeholder="Email Address"
-              email="your-email"
-              required
-            /><br />
-            <input
-              type="input"
-              id="phone"
-              placeholder="+1 234 456 ..."
-              required
-              name="Phone"
-            /><br />
-
-            <div class="button-group">
               <button class="back">
-                <i class="fa-solid fa-arrow-left"></i> Back
+                <i class="fa-solid fa-arrow-left"></i> Previous
               </button>
-              <button class="continue">Submit</button>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-    <div
-      class="loader"
-      style="display: none; text-align: center; padding: 40px"
-    >
-      <div class="load-body">
-        <div>
-          <div class="loading-head">
-            Our experts are preparing your personalized routine
-          </div>
-          <span class="loader1"></span>
-          <div class="load-cont">
-            Did you know? <span>96%</span> of study participants said thier skin
-            looked and felt <span>radiant, rejuvenated</span> and
-            <span>refreshed</span> after using luminence 30days
+
+          <!-- Q5 -->
+          <div class="question" data-index="5">
+            <p class="question-head">Which best describes your skin?</p>
+            <p class="question-content">
+              Normal skin is not dry, oily, or a combination.
+            </p>
+            <div class="option-cont">
+              <div class="options2">
+                <div class="opt">
+                  <div class="option secondOption2">
+                    <div class="skin-color1">.</div>
+                  </div>
+                  <div class="option-text">Type I</div>
+                </div>
+              </div>
+              <div class="options2">
+                <div class="opt">
+                  <div class="option secondOption2">
+                    <div class="skin-color2">.</div>
+                  </div>
+                  <div class="option-text">Type II</div>
+                </div>
+              </div>
+              <div class="options2">
+                <div class="opt">
+                  <div class="option secondOption2">
+                    <div class="skin-color3">.</div>
+                  </div>
+                  <div class="option-text">Type III</div>
+                </div>
+              </div>
+              <div class="options2">
+                <div class="opt">
+                  <div class="option secondOption2">
+                    <div class="skin-color4">.</div>
+                  </div>
+                  <div class="option-text">Type IV</div>
+                </div>
+              </div>
+              <div class="options2">
+                <div class="opt">
+                  <div class="option secondOption2">
+                    <div class="skin-color5">.</div>
+                  </div>
+                  <div class="option-text">Type V</div>
+                </div>
+              </div>
+              <div class="options2">
+                <div class="opt">
+                  <div class="option secondOption2">
+                    <div class="skin-color6">.</div>
+                  </div>
+                  <div class="option-text">Type VI</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="card2">
-            <div class="card-itm">
-              <div class="carousel-item2">
-                <div class="co-head"><span>Result</span> you can see</div>
-                <div class="carousel-images2">
-                  <div class="carousel-image-item2">
-                    <div>
-                      <img
-                        src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556047/before_bznmaj.png"
-                      />
-                    </div>
-                    <div class="days2">Day 1</div>
+          <!-- Q6 -->
+          <div class="question" data-index="6">
+            <p class="question-head2">
+              What are your top 3<br />
+              skin concerns?
+            </p>
+            <p class="question-content">Please select up to 3 skin concerns.</p>
+            <div class="options3">
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556087/Screenshot_2025-06-06_220301_zzwdeb.png"
+                      alt=""
+                    />
                   </div>
-                  <div class="carousel-image-item2">
-                    <div>
-                      <img
-                        src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556046/after_lwq7ya.png"
-                      />
-                    </div>
-                    <div class="days2">Day 21</div>
+                  <div class="option-text">Dryness</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://i.postimg.cc/q7YZF0qf/Screenshot-2025-06-07-104912.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Redness</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556075/Screenshot_2025-06-07_104912_obgry5.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Sensitivity</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556074/Screenshot_2025-06-07_105330_trrsss.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Fine Lines</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556070/Screenshot_2025-06-07_105809_x4e0pj.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Acne</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556085/Screenshot_2025-06-07_104111_z7v4nj.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Clogged Pores</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556090/Screenshot_2025-06-06_213142_rapqy4.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Oily Skin</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556070/Screenshot_2025-06-07_105809_x4e0pj.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Loss of Firmness</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556070/Screenshot_2025-06-07_110330_xrwq70.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Uneven Skin Tone</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="question" data-index="7">
+            <p class="question-head2">Do you ever get breakouts?</p>
+            <p class="question-content">
+              If you experience acne please select full face breakouts.
+            </p>
+            <div class="options2">
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556066/Screenshot_2025-06-07_111245_jtr3xr.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">No</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556066/Screenshot_2025-06-07_111359_efsz2a.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">
+                    Occasional<br />
+                    Pimples
                   </div>
                 </div>
-                <div class="visible">Visible improvement</div>
-                <div class="carousel-head">Clear & Confident</div>
-                <div class="carousel-contents">
-                  "Thanks to luminence's beef tallow, my skin has never been
-                  clearer. No more breakouts or uneven patches, just smooth
-                  skin."
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556059/Screenshot_2025-06-07_111449_ymfie9.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">
+                    Full Face <br />
+                    Breakouts
+                  </div>
                 </div>
-                <div class="carousel-name">Jasmine,32</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q8: Message -->
+          <div class="question" data-index="8">
+            <div class="message-screen screen2">
+              <div class="msg">
+                <div class="abt">About Luminence</div>
+                <div class="abtText">
+                  <span>Try it Risk-Free</span><br />
+                  <span>30 Days</span> Money Back Guarantee<br />
+                  & Free Return
+                </div>
+              </div>
+            </div>
+            <div class="message-buttons">
+              <button class="continue">Continue</button>
+              <button class="back">
+                <i class="fa-solid fa-arrow-left"></i> Previous
+              </button>
+            </div>
+          </div>
+
+          <!-- Q9 -->
+          <div class="question" data-index="9">
+            <p class="question-head2">
+              What part are you most interested in improving
+            </p>
+            <p class="question-content">Please select up to 3 areas.</p>
+
+            <div class="options3">
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556059/Screenshot_2025-06-07_175429_hyqzav.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Face</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556058/neck_rowbz9.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Neck and chest</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556058/hand_r1omhz.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Hand</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556057/body_jfjo3i.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Body</div>
+                </div>
+              </div>
+              <div class="opt">
+                <div class="option secondOption">
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556056/eye_vrikpw.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="option-text">Under Eyes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q10 -->
+          <div class="question" data-index="10">
+            <p class="question-head">
+              How would you describe your daily skincare routine?
+            </p>
+            <p class="question-content">
+              Select the option that best describes how you care for your skin.
+            </p>
+            <div class="options">
+              <div class="option">
+                <div class="radio"></div>
+                <div>I like to keep it sweet and simple</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>I use a couple of essential product everyday</div>
+              </div>
+              <div class="option">
+                <div class="radio"></div>
+                <div>I enjoy a thorough routine with several steps</div>
+              </div>
+            </div>
+          </div>
+          <form id="myForm">
+            <!-- Q11 -->
+            <div class="question" data-index="11">
+              <p class="question-head">
+                What product would you love to see us create next
+              </p>
+              <p class="question-content">
+                We're always innovating tell us what your dream skincare product
+                looks like!
+              </p>
+              <textarea
+                placeholder="Input here  (optional)"
+                rows="4"
+                cols="50"
+                id="message"
+                name="suggested-product"
+              ></textarea>
+              <div class="button-group">
+                <button class="back">
+                  <i class="fa-solid fa-arrow-left"></i> Previous
+                </button>
+                <button class="continue">Continue</button>
+              </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="question" data-index="12">
+              <p class="question-head">Where can we send your results?</p>
+              <p class="question-content">
+                Enter your name and email to receive your personalized routine.
+              </p>
+
+              <input
+                type="text"
+                id="name"
+                style="margin-top: 20px"
+                placeholder="First Name"
+                name="your-name"
+                required
+              /><br />
+              <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                email="your-email"
+                required
+              /><br />
+              <input
+                type="input"
+                id="phone"
+                placeholder="+1 234 456 ..."
+                required
+                name="Phone"
+              /><br />
+
+              <div class="button-group">
+                <button class="back">
+                  <i class="fa-solid fa-arrow-left"></i> Previous
+                </button>
+                <button class="continue">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="loader"
+        style="display: none; text-align: center; padding: 40px"
+      >
+        <div class="load-body">
+          <div>
+            <div class="loading-head">
+              Our experts are preparing your personalized routine
+            </div>
+            <span class="loader1"></span>
+            <div class="load-cont">
+              Did you know? <span>96%</span> of study participants said thier
+              skin looked and felt <span>radiant, rejuvenated</span> and
+              <span>refreshed</span> after using luminence 30days
+            </div>
+
+            <div class="card2">
+              <div class="card-itm">
+                <div class="carousel-item2">
+                  <div class="co-head"><span>Result</span> you can see</div>
+                  <div class="carousel-images2">
+                    <div class="carousel-image-item2">
+                      <div>
+                        <img
+                          src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556047/before_bznmaj.png"
+                        />
+                      </div>
+                      <div class="days2">Day 1</div>
+                    </div>
+                    <div class="carousel-image-item2">
+                      <div>
+                        <img
+                          src="https://res.cloudinary.com/dxt708wtx/image/upload/v1749556046/after_lwq7ya.png"
+                        />
+                      </div>
+                      <div class="days2">Day 21</div>
+                    </div>
+                  </div>
+                  <div class="visible">Visible improvement</div>
+                  <div class="carousel-head">Clear & Confident</div>
+                  <div class="carousel-contents">
+                    "Thanks to luminence's beef tallow, my skin has never been
+                    clearer. No more breakouts or uneven patches, just smooth
+                    skin."
+                  </div>
+                  <div class="carousel-name">Jasmine,32</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="thank-you-message" style="display: none">
-      <div class="result-head">Your <i>results</i> are in!</div>
-      <div class="disclaimer-text">
-        The statements in this message have not been evaluated bt the FDA. Th
-        information provided here is not intended to diagnose, treat, cure or
-        prevent any disease and should not be constructed as medical advice
-        result may not be typical
+      <div class="thank-you-message" style="display: none">
+        <div class="result-head">Your <i>results</i> are in!</div>
+        <div class="disclaimer-text">
+          The statements in this message have not been evaluated bt the FDA. Th
+          information provided here is not intended to diagnose, treat, cure or
+          prevent any disease and should not be constructed as medical advice
+          result may not be typical
+        </div>
+        <div id="recommendation-output"></div>
       </div>
-      <div id="recommendation-output"></div>
-    </div>
 
-    <div class="buttons">
-      <button class="button" id="prev-btn" disabled>
-        <i class="fa-solid fa-arrow-left"></i> Previous
-      </button>
-      <button class="button" id="next-btn" disabled>
-        Next <i class="fa-solid fa-arrow-right"></i>
-      </button>
+      <div class="buttons">
+        <button class="button" id="prev-btn" disabled>
+          <i class="fa-solid fa-arrow-left"></i> Previous
+        </button>
+        <button class="button" id="next-btn" disabled>
+          Next <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
     </div>
 
     <script>
@@ -1633,7 +1644,9 @@
             option.classList.toggle("selected");
 
             const selected = question.querySelectorAll(".option.selected");
-            if (selected.length > 3) {
+            const maxSelect = index === 9 ? 5 : 3;
+
+            if (selected.length > maxSelect) {
               option.classList.remove("selected");
               return;
             }
@@ -1648,8 +1661,11 @@
 
             updateButtons();
 
-            // ✅ Auto-advance for Question 6
-            if (index === 6 && selected.length === 3) {
+            // Auto-advance when 3 selected
+            if (
+              (index === 6 && selected.length === 3) ||
+              (index === 9 && selected.length === 5)
+            ) {
               setTimeout(() => {
                 if (currentQuestion < totalQuestions) {
                   currentQuestion++;
@@ -1657,37 +1673,29 @@
                   updateProgress();
                   updateButtons();
                 }
-              }, 300); // delay to allow selection animation
-            }
-            if (index === 9 && selected.length === 3) {
-              setTimeout(() => {
-                if (currentQuestion < totalQuestions) {
-                  currentQuestion++;
-                  showQuestion(currentQuestion);
-                  updateProgress();
-                  updateButtons();
-                }
-              }, 300); // delay to allow selection animation
+              }, 300);
             }
 
             return;
           }
 
+          // Single select logic
           options.forEach((el) => el.classList.remove("selected"));
           option.classList.add("selected");
 
           updateButtons();
 
-          if ([4, 8, 11, 12].includes(currentQuestion + 1)) return;
-
-          setTimeout(() => {
-            if (currentQuestion < totalQuestions) {
-              currentQuestion++;
-              showQuestion(currentQuestion);
-              updateProgress();
-              updateButtons();
-            }
-          }, 250);
+          // Auto-advance if not one of the stop pages (4, 8, 11, 12)
+          if (![4, 8, 11, 12].includes(currentQuestion)) {
+            setTimeout(() => {
+              if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+                updateProgress();
+                updateButtons();
+              }
+            }, 250);
+          }
         });
       });
 
@@ -1909,7 +1917,7 @@
         return {
           A: "https://res.cloudinary.com/dxt708wtx/image/upload/v1749556059/Screenshot_2025-06-09_171431_y9rmqk.png",
           B: "https://res.cloudinary.com/dxt708wtx/image/upload/v1749556093/Screenshot_2025-04-24_225550_mdkiey.webp",
-          C: "https://res.cloudinary.com/dxt708wtx/image/upload/v1749556044/Screenshot_2025-04-24_225659_phufcx.webp",
+          C: "https://i.ibb.co/ZzCw2vtp/Screenshot-2025-04-24-225659-1.webp",
         }[code]; // Replace with your real URLs
       }
 
