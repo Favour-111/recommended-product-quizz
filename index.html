@@ -66,11 +66,14 @@
         flex-direction: column;
         width: 680px;
       }
-      .progress-wrapper {
+      .progress-wrapper1 {
         position: relative;
         height: 30px;
         width: 100%;
         margin-bottom: 20px;
+        span {
+          display: none;
+        }
       }
       .radio {
         height: 13px;
@@ -90,6 +93,7 @@
       }
       .progress-line-bg {
         background: #ccc;
+        color: #ccc;
       }
       .progress-line-fill {
         background: #fdcecd;
@@ -104,6 +108,7 @@
         z-index: 2;
       }
       .dot {
+        color: white;
         width: 5px;
         height: 5px;
         border-radius: 50%;
@@ -356,6 +361,18 @@
           font-size: 14px;
           span {
             font-size: 14px;
+            font-weight: 900;
+          }
+        }
+        .abtText1 {
+          font-weight: normal;
+          color: white;
+          text-transform: uppercase;
+          font-size: 16px !important;
+          font-weight: bold;
+          i {
+            color: #fdcecd;
+            font-size: 16px !important;
             font-weight: 900;
           }
         }
@@ -832,13 +849,34 @@
             font-weight: 900;
           }
         }
+        .abtText1 {
+          font-weight: normal;
+          color: white;
+          text-transform: uppercase;
+          font-size: 14px !important;
+          font-weight: bold;
+          i {
+            color: #fdcecd;
+            font-size: 14px !important;
+            font-weight: 900;
+          }
+        }
+        .abtText {
+          font-weight: normal;
+          color: white;
+          font-size: 12px;
+          span {
+            font-size: 12px;
+            font-weight: 900;
+          }
+        }
         .button-group {
           width: auto !important;
         }
       }
       @media screen and (max-width: 500px) {
         .options {
-          width: 80%;
+          width: 90%;
         }
         input {
           width: 80% !important;
@@ -858,14 +896,15 @@
         <div class="step-head">
           <div class="wrap-cont">
             <div class="step-counter" id="step-counter">1/4</div>
-            <div class="progress-wrapper">
-              <div class="progress-line-bg"></div>
+            <div class="progress-wrapper1">
+              <span>.</span>
+              <div class="progress-line-bg">.</div>
               <div class="progress-line-fill" id="progress-line-fill"></div>
               <div class="dots">
-                <div class="dot" id="dot-1"></div>
-                <div class="dot" id="dot-2"></div>
-                <div class="dot" id="dot-3"></div>
-                <div class="dot" id="dot-4"></div>
+                <div class="dot" id="dot-1">.</div>
+                <div class="dot" id="dot-2">.</div>
+                <div class="dot" id="dot-3">.</div>
+                <div class="dot" id="dot-4">.</div>
               </div>
             </div>
           </div>
@@ -993,10 +1032,7 @@
             <div class="message-screen screen1">
               <div class="msg">
                 <div class="abt">About Luminence</div>
-                <div class="abtText">
-                  Luminence has helped over <span>1,000,000</span> people
-                  transform their skin
-                </div>
+                <div class="abtText1">Trusted BY <i>+1m customers</i></div>
               </div>
             </div>
             <div class="message-buttons">
@@ -1071,7 +1107,7 @@
               What are your top 3<br />
               skin concerns?
             </p>
-            <p class="question-content">Please select up to 3 skin concerns.</p>
+            <p class="question-content">Please select 3 skin concerns.</p>
             <div class="options3">
               <div class="opt">
                 <div class="option secondOption">
@@ -1619,7 +1655,7 @@
 
         try {
           const res = await fetch(
-            "https://klaviyo-integration.onrender.com/subscribe",
+            "https://klaviyo-integration.vercel.app/subscribe",
             {
               method: "POST",
               headers: {
@@ -1884,7 +1920,7 @@
                         <div class="Precent">Save ${percent}%</div>
                       </div>
                       <button onclick="window.location.href='https://luminenceskin.com/collections/shop-all'" class="done-btn">
-                        ADD to cart<br />
+                        Show Now<br />
                         <span>60 days money back gurantee</span>
                       </button>
                     </div>
